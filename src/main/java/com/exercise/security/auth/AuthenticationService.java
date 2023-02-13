@@ -30,7 +30,7 @@ public class AuthenticationService {
 			throw new RuntimeException(String.format("Application %s does not exist.", request.getApp()));
 		}
 
-		// TODO exist this user with this app?
+		// TODO exist this user with this app? create IF, where check exist user with app, and when exist than return exception
 
 		var user = User.builder()
 				.firstName(request.getFirstName())
