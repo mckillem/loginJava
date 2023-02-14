@@ -11,8 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -25,10 +23,10 @@ public class AuthenticationService {
 	public AuthenticationResponse register(RegisterRequest request) {
 
 		// TODO if App does not exist in database than return exception
-		if (!request.getApp() exist in table._app)
-		{
-			throw new RuntimeException(String.format("Application %s does not exist.", request.getApp()));
-		}
+//		if (!request.getApp() exist in table._app)
+//		{
+//			throw new RuntimeException(String.format("Application %s does not exist.", request.getApp()));
+//		}
 
 		// TODO exist this user with this app? create IF, where check exist user with app, and when exist than return exception
 
@@ -53,14 +51,14 @@ public class AuthenticationService {
 		);
 
 		// TODO start refactoring maybe
-		Optional<User> foundUser = repository.findByUserAppPk(request.getEmail(), request.getApp());
-
-		if (foundUser.isEmpty()) {
-			throw new RuntimeException(String.format("%s", request.getEmail()));
-		}
+//		Optional<User> foundUser = repository.findByUserAppPk(request.getEmail(), request.getApp());
+//
+//		if (foundUser.isEmpty()) {
+//			throw new RuntimeException(String.format("%s", request.getEmail()));
+//		}
 		// TODO end refactoring
 
-		var user = repository.findByUserAppPk(request.getEmail(), request.getApp()).orElseThrow();
+		var user = repository.findByUserAppPkEmail(request.getEmail()).orElseThrow();
 		var jwtToken = jwtService.generateToken(user);
 		return AuthenticationResponse.builder().token(jwtToken).build();
 	}
