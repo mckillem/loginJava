@@ -1,5 +1,6 @@
 package com.exercise.security.auth;
 
+import com.exercise.security.app.AppService;
 import com.exercise.security.config.JwtService;
 import com.exercise.security.user.Role;
 import com.exercise.security.user.User;
@@ -20,15 +21,19 @@ public class AuthenticationService {
 	private final JwtService jwtService;
 	private final AuthenticationManager authenticationManager;
 
+	private final AppService appService;
+
 	public AuthenticationResponse register(RegisterRequest request) {
 
-		// TODO if App does not exist in database than return exception
-//		if (!request.getApp() exist in table._app)
-//		{
-//			throw new RuntimeException(String.format("Application %s does not exist.", request.getApp()));
-//		}
+		if (!appService.isAppExisting(request.getApp()))
+		{
+			throw new RuntimeException(String.format("The application %s does not exist.", request.getApp()));
+		}
 
-		// TODO exist this user with this app? create IF, where check exist user with app, and when exist than return exception
+		if (!repository.findByUserAppPkApp(request.getApp()).isEmpty())
+		{
+			throw new RuntimeException(String.format("The user %s is already registered to the application %s.", request.getEmail(), request.getApp()));
+		}
 
 		var user = User.builder()
 				.firstName(request.getFirstName())
