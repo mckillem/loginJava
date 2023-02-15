@@ -8,6 +8,4 @@ import java.util.Optional;
 @Repository
 public interface AppRepository extends JpaRepository<App, String> {
 	Optional<App> findAppByAppName(String name);
-
-	void delete(String app);
 }

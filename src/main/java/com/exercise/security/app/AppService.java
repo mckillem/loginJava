@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -58,7 +59,7 @@ public class AppService {
             throw new RuntimeException(String.format("This application '%s' cannot be deleted because it contains users.", app));
         }
 
-        appRepository.delete(appExists);
+        appRepository.deleteAllInBatch(Collections.singletonList(appExists));
         appRepository.flush();
     }
 
