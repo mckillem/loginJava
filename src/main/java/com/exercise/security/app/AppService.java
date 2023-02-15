@@ -46,14 +46,14 @@ public class AppService {
                         .build());
     }
 
-    public void deleteApp(String app) {
-        App appExists = this.getApp(app);
+    public void deleteApp(AppRequest app) {
+        App appExists = this.getApp(app.getAppName());
 
         if (appExists == null) {
             throw new RuntimeException(String.format("This application '%s' does not exist.", app));
         }
 
-        Collection<User> users = userService.findAllUsersWithApp(app);
+        Collection<User> users = userService.findAllUsersWithApp(app.getAppName());
 
         if (!users.isEmpty()) {
             throw new RuntimeException(String.format("This application '%s' cannot be deleted because it contains users.", app));

@@ -11,14 +11,26 @@ public class AppController {
 
 	private final AppService service;
 
+	@GetMapping
+	public App getApp(String app) {
+		return service.getApp(app);
+	}
+
 	@PostMapping("/newApp")
 	@ResponseStatus(HttpStatus.OK)
 	public void createNewApp(@RequestBody AppRequest app) {
 		service.createNewApp(app);
 	}
 
-	@GetMapping
-	public App getApp(String app) {
-		return service.getApp(app);
+	@PostMapping("/updateApp")
+	@ResponseStatus(HttpStatus.OK)
+	public void updateApp(@RequestBody AppRequest app) {
+		service.updateApp(app);
+	}
+
+	@PostMapping("/deleteApp")
+	@ResponseStatus(HttpStatus.OK)
+	public void deleteApp(@RequestBody AppRequest app) {
+		service.deleteApp(app);
 	}
 }
