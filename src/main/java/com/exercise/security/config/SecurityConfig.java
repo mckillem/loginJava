@@ -62,7 +62,7 @@ public class SecurityConfig {
 //		todo: which object to convert to which?
 //		every user has to have an app even admin (it needs to be changed, it does not make sense)
 		UserDetails admin = User
-//				todo: does admin need a name or app? Does admin need an email (maybe for reporting issues)?
+//				todo: does admin need a name or an app? Does admin need an email (maybe for reporting issues)?
 				.withUsername("admin@admin.com")
 				.password(passwordEncoder.encode("admin"))
 				.roles(String.valueOf(Role.ADMIN))
