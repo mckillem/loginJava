@@ -18,7 +18,7 @@ public class AppController {
 
 //	todo why it returns 403. Is it missing AppResponse? Is it because I need right rights to create a new app?
 //	I presume that only an administrator can manipulate applications so I need to create an administrator first
-//	How to add an app? Admin has to log in to add an app?
+//	How to add an app? Admin has to log in to add an app? How? Create a frontend
 	@PostMapping("/newApp")
 	@ResponseStatus(HttpStatus.OK)
 	public void createNewApp(@RequestBody AppRequest app) {
