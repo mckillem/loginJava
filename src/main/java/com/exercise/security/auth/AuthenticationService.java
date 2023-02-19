@@ -51,6 +51,8 @@ public class AuthenticationService {
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
 						request.getEmail(),
+//						todo: cannot add
+//						request.getApp(),
 						request.getPassword()
 				)
 		);
