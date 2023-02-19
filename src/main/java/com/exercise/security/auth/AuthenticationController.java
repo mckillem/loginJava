@@ -20,8 +20,9 @@ public class AuthenticationController {
 		return service.register(request);
 	}
 
+//	todo: How to exclude an admin of need to log in to an application?
 	@PostMapping("/authenticate")
-	public AuthenticationResponse register(
+	public AuthenticationResponse authenticate(
 			@RequestBody AuthenticationRequest request
 	) {
 		return service.authenticate(request);
