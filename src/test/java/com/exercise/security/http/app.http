@@ -8,7 +8,7 @@ POST http://localhost:8080/api/v1/app/newApp
 Content-Type: application/json
 
 {
-  "app": "TODO",
+  "appName": "TODO",
   "description": "TODO list"
 }
 
@@ -18,7 +18,7 @@ POST http://localhost:8080/api/v1/app/updateApp
 Content-Type: application/json
 
 {
-  "app": "TODO",
+  "appName": "TODO",
   "description": "TODO list"
 }
 
@@ -28,5 +28,5 @@ POST http://localhost:8080/api/v1/app/deleteApp
 Content-Type: application/json
 
 {
-  "app": "TODO"
+  "appName": "TODO"
 }

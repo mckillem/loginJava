@@ -16,7 +16,7 @@ public class AppService {
 
     private final UserService userService;
 
-    public App getApp(String app) {
+	public App getApp(String app) {
         return appRepository.findAppByAppName(app).orElse(null);
     }
 
@@ -68,4 +68,7 @@ public class AppService {
 
     }
 
+    public Collection<App> getAllApps() {
+        return appRepository.findAll();
+    }
 }
