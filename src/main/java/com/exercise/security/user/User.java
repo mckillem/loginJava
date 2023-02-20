@@ -20,12 +20,15 @@ import java.util.List;
 @Table(name = "_user")
 public class User implements UserDetails {
 
-	@Id
-	@GeneratedValue
-	private Integer id;
+	@EmbeddedId
+	private UserAppPk userAppPk;
+
+	@Column(name = "first_name")
 	private String firstName;
+
+	@Column(name = "last_name")
 	private String lastName;
-	private String email;
+
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -41,7 +44,7 @@ public class User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return email;
+		return userAppPk.getEmail();
 	}
 
 	@Override
