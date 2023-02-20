@@ -26,7 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 //public class SecurityConfig extends JdbcUserDetailsManager {
 public class SecurityConfig {
 
-	private final JwtAuthenticationFilter jwtAuthFilter;
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	private final AuthenticationProvider authenticationProvider;
 //	private final UserRepository userRepository;
 //	private JdbcUserDetailsManager userDetailsManager;
@@ -47,7 +47,11 @@ public class SecurityConfig {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authenticationProvider(authenticationProvider)
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+//		TODO: Is formLogin() rewriting our implementation?
+		http.formLogin();
+		http.httpBasic();
 
 		return http.build();
 	}
