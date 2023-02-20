@@ -15,6 +15,7 @@ public class AppController {
 
 	private final AppService service;
 
+//	TODO: todo in an app.http
 	@GetMapping
 	public App getApp(String app) {
 		return service.getApp(app);
