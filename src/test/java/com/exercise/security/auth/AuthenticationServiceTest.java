@@ -43,31 +43,31 @@ class AuthenticationServiceTest {
 		//		then
 	}
 
-	@Test
-	void canAuthenticate() {
-		//		given
-		AuthenticationRequest request = {
-				"email": "email@email.com",
-				"app": "TODO",
-				"password": "heslo"
-		}
-		//		when
-		authenticationService.authenticate();
-		//		then
-	}
+//	@Test
+//	void canAuthenticate() {
+//		//		given
+//		AuthenticationRequest request = {
+//				"email": "email@email.com",
+//				"app": "TODO",
+//				"password": "heslo"
+//		}
+//		//		when
+//		authenticationService.authenticate();
+//		//		then
+//	}
 
-	@Test
-	void willThrowAnErrorWhenAuthenticateIsNotSuccessful() {
-		//		given
-		AuthenticationRequest request = new AuthenticationRequest(
-				"email": "email@email.com",
-				"app": "TODO",
-				"password": "heslo"¨
-		)
-
-
-		//		when
-		authenticationService.authenticate(request);
-		//		then
-	}
+//	@Test
+//	void willThrowAnErrorWhenAuthenticateIsNotSuccessful() {
+//		//		given
+//		AuthenticationRequest request = new AuthenticationRequest(
+//				"email": "email@email.com",
+//				"app": "TODO",
+//				"password": "heslo"¨
+//		)
+//
+//
+//		//		when
+//		authenticationService.authenticate(request);
+//		//		then
+//	}
 }
