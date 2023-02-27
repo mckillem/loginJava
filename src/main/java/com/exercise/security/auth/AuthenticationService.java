@@ -2,6 +2,7 @@ package com.exercise.security.auth;
 
 import com.exercise.security.app.AppService;
 import com.exercise.security.config.JwtService;
+import com.exercise.security.token.TokenService;
 import com.exercise.security.user.Role;
 import com.exercise.security.user.User;
 import com.exercise.security.user.UserAppPk;
@@ -20,7 +21,7 @@ public class AuthenticationService {
 	private final PasswordEncoder passwordEncoder;
 	private final JwtService jwtService;
 	private final AuthenticationManager authenticationManager;
-
+	private final TokenService tokenService;
 	private final AppService appService;
 
 	public AuthenticationResponse register(RegisterRequest request) {
@@ -44,7 +45,14 @@ public class AuthenticationService {
 				.build();
 		repository.save(user);
 		var jwtToken = jwtService.generateToken(user);
-		return AuthenticationResponse.builder().token(jwtToken).build();
+		tokenService.saveToken(jwtToken);
+
+		return AuthenticationResponse.builder()
+				.firstName(user.getFirstName())
+				.lastName(user.getLastName())
+				.email(user.getUserAppPk().getEmail())
+				.token(jwtToken)
+				.build();
 	}
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -67,6 +75,13 @@ public class AuthenticationService {
 
 		var user = repository.findByUserAppPkEmail(request.getEmail()).orElseThrow();
 		var jwtToken = jwtService.generateToken(user);
-		return AuthenticationResponse.builder().token(jwtToken).build();
+		tokenService.saveToken(jwtToken);
+
+		return AuthenticationResponse.builder()
+				.firstName(user.getFirstName())
+				.lastName(user.getLastName())
+				.email(user.getUserAppPk().getEmail())
+				.token(jwtToken)
+				.build();
 	}
 }
