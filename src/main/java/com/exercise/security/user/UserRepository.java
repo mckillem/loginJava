@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, UserAppPk> {
 	Optional<User> findByUserAppPkEmail(String email);
 	Collection<User> findByUserAppPkApp(String app);
+
+	Collection<User> findAllByUserAppPkApp(String app);
 }
