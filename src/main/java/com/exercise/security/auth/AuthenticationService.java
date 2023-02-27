@@ -30,7 +30,7 @@ public class AuthenticationService {
 			throw new RuntimeException(String.format("The application %s does not exist.", request.getApp()));
 		}
 
-		if (!repository.findByUserAppPkApp(request.getApp()).isEmpty())
+		if (!repository.findByUserAppPkApp(request.getApp()).isEmpty() && repository.findByUserAppPkEmail(request.getEmail()).isPresent())
 		{
 			throw new RuntimeException(String.format("The user %s is already registered to the application %s.", request.getEmail(), request.getApp()));
 		}
