@@ -44,15 +44,14 @@ public class SecurityConfig {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/login", configuration);
 		source.registerCorsConfiguration("/api/**", configuration);
-		source.registerCorsConfiguration("/crm-client/**", configuration);
 
 		return source;
 	}
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-				.cors()
-				.and()
+//				.cors()
+//				.and()
 				.csrf()
 				.disable()
 				.authorizeHttpRequests()
