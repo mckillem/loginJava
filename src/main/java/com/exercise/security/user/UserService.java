@@ -14,7 +14,12 @@ public class UserService {
 
 	private final UserRepository userRepository;
 	private final TokenService tokenService;
-	private final AppService appService;
+	private AppService appService;
+
+//	To prevent a circular dependency
+	public void setAppService(AppService appService) {
+		this.appService = appService;
+	}
 
 	public Collection<User> findAllUsersWithApp(String app) {
 		return userRepository.findByUserAppPkApp(app);
