@@ -16,15 +16,6 @@ public class UserService {
 	private final TokenService tokenService;
 	private AppService appService;
 
-//	To prevent a circular dependency
-	public void setAppService(AppService appService) {
-		this.appService = appService;
-	}
-
-	public Collection<User> findAllUsersWithApp(String app) {
-		return userRepository.findByUserAppPkApp(app);
-	}
-
 	public Collection<UserResponse> getAll(UserRequest userRequest) {
 
 		if (!tokenService.isTokenExisting(userRequest.getToken())) {
@@ -36,7 +27,6 @@ public class UserService {
 		}
 
 		Collection<User> users = userRepository.findAllByUserAppPkApp(userRequest.getApp());
-
 
 		return users.stream()
 				.map(u -> UserResponse.builder()

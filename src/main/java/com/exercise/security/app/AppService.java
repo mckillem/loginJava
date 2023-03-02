@@ -1,7 +1,7 @@
 package com.exercise.security.app;
 
 import com.exercise.security.user.User;
-import com.exercise.security.user.UserService;
+import com.exercise.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class AppService {
 
     private final AppRepository appRepository;
 
-    private final UserService userService;
+    private final UserRepository userRepository;
 
 	public App getApp(String app) {
         return appRepository.findAppByAppName(app).orElse(null);
@@ -53,7 +53,7 @@ public class AppService {
             throw new RuntimeException(String.format("This application '%s' does not exist.", app));
         }
 
-        Collection<User> users = userService.findAllUsersWithApp(app.getAppName());
+        Collection<User> users = findAllUsersWithApp(app.getAppName());
 
         if (!users.isEmpty()) {
             throw new RuntimeException(String.format("This application '%s' cannot be deleted because it contains users.", app));
@@ -70,5 +70,9 @@ public class AppService {
 
     public Collection<App> getAllApps() {
         return appRepository.findAll();
+    }
+
+    private Collection<User> findAllUsersWithApp(String app) {
+        return userRepository.findByUserAppPkApp(app);
     }
 }
