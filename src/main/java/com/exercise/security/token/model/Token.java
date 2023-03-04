@@ -1,4 +1,4 @@
-package com.exercise.security.token;
+package com.exercise.security.token.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

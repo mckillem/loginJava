@@ -1,0 +1,9 @@
+POST http://localhost:8082/api/v1/user/list
+Content-Type: application/json
+
+{
+  "app": "TODO",
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlYWRAbWFpbC5jb20iLCJpYXQiOjE2Nzc3ODU1NjQsImV4cCI6MTY3Nzc4NzAwNH0.6fIQl8liv_L3YSI867_YP862xKEOMto1aNWJ2o4pkC8"
+}
+
+###

@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.Collection;
-
 @Getter
 @Builder
 @AllArgsConstructor
-public class UserResponse {
-	private Collection<UserOfApp> users;
+public class UserOfApp {
+
+	private String firstName;
+	private String lastName;
+	private String email;
+
+	private String fullName;
 }

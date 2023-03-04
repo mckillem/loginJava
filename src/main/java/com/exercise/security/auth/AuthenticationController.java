@@ -1,5 +1,6 @@
 package com.exercise.security.auth;
 
+import com.exercise.security.token.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
 	private final AuthenticationService service;
+
+	private final TokenService tokenService;
 
 	@CrossOrigin("*")
 	@PostMapping("/register")
@@ -26,5 +29,11 @@ public class AuthenticationController {
 			@RequestBody AuthenticationRequest request
 	) {
 		return service.authenticate(request);
+	}
+
+	@CrossOrigin("*")
+	@PostMapping("/logout")
+	public void logout(@RequestBody String token) {
+		tokenService.logout(token);
 	}
 }

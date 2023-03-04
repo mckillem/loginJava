@@ -14,9 +14,9 @@ public class UserService {
 
 	private final UserRepository userRepository;
 	private final TokenService tokenService;
-	private AppService appService;
+	private final AppService appService;
 
-	public Collection<UserResponse> getAll(UserRequest userRequest) {
+	public UserResponse getAll(UserRequest userRequest) {
 
 		if (!tokenService.isTokenExisting(userRequest.getToken())) {
 			throw new RuntimeException("Token does not exist.");
@@ -28,12 +28,15 @@ public class UserService {
 
 		Collection<User> users = userRepository.findAllByUserAppPkApp(userRequest.getApp());
 
-		return users.stream()
-				.map(u -> UserResponse.builder()
-						.firstName(u.getFirstName())
-						.lastName(u.getLastName())
-						.email(u.getUserAppPk().getEmail())
-						.build())
-				.collect(Collectors.toList());
+		return UserResponse.builder()
+				.users(users.stream()
+						.map(u -> UserOfApp.builder()
+								.firstName(u.getFirstName())
+								.lastName(u.getLastName())
+								.email(u.getUserAppPk().getEmail())
+								.fullName(String.format("%s %s",u.getFirstName(), u.getLastName()))
+								.build())
+						.collect(Collectors.toList()))
+				.build();
 	}
 }
