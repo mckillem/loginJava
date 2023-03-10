@@ -74,18 +74,18 @@ jobs:
 #          text: ':white_check_mark: pushed mckillem/todo-java:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/mckillem/todo-java'
 #        env:
 #          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Update and commit app version in docker-compose.yaml
-        run: |
+#      - name: Update and commit app version in docker-compose.yaml
+#        run: |
 #          BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
 #          echo -e "Current elasticbeanstalk/docker-compose.yml\n$(cat elasticbeanstalk/docker-compose.yml)"
 #          sed -i -E 's_(mckillem/jwt_security:)([^"]*)_\1'${BUILD_NUMBER}'_' elasticbeanstalk/docker-compose.yml
 #          echo -e "Current elasticbeanstalk/docker-compose.yml\n$(cat elasticbeanstalk/docker-compose.yml)"
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+#          git config user.name github-actions
+#          git config user.email github-actions@github.com
 #          git add elasticbeanstalk/docker-compose.yml
 #          git commit -m "new app version: ${BUILD_NUMBER}"
-          git commit -m "blabla"
-          git push
+#          git commit -m "blabla"
+#          git push
 
 #      - uses: 8398a7/action-slack@v3
 #        with:
