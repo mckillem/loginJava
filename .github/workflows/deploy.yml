@@ -36,14 +36,6 @@ jobs:
           - 5434:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-#      - uses: 8398a7/action-slack@v3
-#        with:
-#          status: ${{ job.status }}
-#          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-#          text: 'CICD ongoing... :eyes:'
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
       - uses: actions/checkout@v2
 
       - name: Setup Java JDK
@@ -64,16 +56,8 @@ jobs:
       - name: Maven Clean Package and Push to Dockerhub
         run: |
           ./mvnw --no-transfer-progress clean package \
-#            -P build-frontend \
             -P jib-push-to-dockerhub \
               -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
-#      - uses: 8398a7/action-slack@v3
-#        with:
-#          status: ${{ job.status }}
-#          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-#          text: ':white_check_mark: pushed mckillem/todo-java:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/mckillem/todo-java'
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 #      - name: Update and commit app version in docker-compose.yaml
 #        run: |
 #          BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
