@@ -1,7 +1,8 @@
 version: "3.8"
 services:
   backend:
-    image: "mckillem/jwt_security:1"
+#    image: "mckillem/jwt_security:1"
+    image: "mckillem/jwt_security"
     ports:
       - "82:8080"
     restart: always
